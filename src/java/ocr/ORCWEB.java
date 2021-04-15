@@ -52,7 +52,7 @@ public class ORCWEB {
         
         System.out.println("path: "+pathProject);
         
-        String AllPath =pathProject+"\\tempFiles";
+        String AllPath =pathProject+"//tempFiles";
         
         File directorios = new File(AllPath);
         if (!directorios.exists()) {
@@ -64,11 +64,11 @@ public class ORCWEB {
         
         ITesseract instance = new Tesseract();  // JNA Interface Mapping
         instance.setLanguage("eng");
-        instance.setDatapath(pathProject+"\\tessdata"); // path to tessdata directory Windows
+        instance.setDatapath(pathProject+"//tessdata"); // path to tessdata directory Windows
         //instance.setDatapath(pathProject+"/tessdata"); // path to tessdata directory Linux
         /* guardar el base64*/
             byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64);
-            String path = pathProject+"\\tempFiles\\test_image.png";
+            String path = pathProject+"//tempFiles//test_image.png";
             File file = new File(path);
             try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
                 outputStream.write(imageBytes);
@@ -76,7 +76,7 @@ public class ORCWEB {
                 e.printStackTrace();
             }
             //leer la imagen base64 guardada
-            BufferedImage imagen = ImageIO.read(new File(pathProject+"\\tempFiles\\test_image.png"));
+            BufferedImage imagen = ImageIO.read(new File(pathProject+"//tempFiles//test_image.png"));
         /* guardar el base64*/
         /*nueva imagen redimencionada x,y,w,h*/ 
             ImageHelper imghelp = new ImageHelper();
@@ -84,11 +84,11 @@ public class ORCWEB {
            BufferedImage imagen2 = imghelp.getSubImage(imagen, obj.getParam_x() , obj.getParam_y() , obj.getParam_w() , obj.getParam_h());
 
             try {
-                ImageIO.write(imagen2, "png", new File(pathProject+"\\tempFiles\\foto.png"));
+                ImageIO.write(imagen2, "png", new File(pathProject+"//tempFiles//foto.png"));
              } catch (IOException e) {
                 System.out.println("Error de escritura");
              }
-            String path2 = pathProject+"\\tempFiles\\foto.png";
+            String path2 = pathProject+"//tempFiles//foto.png";
             File file2 = new File(path2);
         /*nueva imagen redimencionada*/
         
